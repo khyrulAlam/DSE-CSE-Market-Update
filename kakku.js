@@ -60,3 +60,10 @@ async function kakkuGetCSE(){
 
 	return data;
 }
+
+
+// Task 
+// 1. Make a Real time DSE Function
+// 2. Make view Template for DSE
+// 3. Make view Template for CSE
+// 4. Make Function for any url data scraping
