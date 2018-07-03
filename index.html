@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dhaka Stock Exchange And Chittagong Stock Exchange </title>
+</head>
+<body>
+	<div class="view"></div>
+	<div class="view2"></div>
+	
+
+	<script src="kakku.js"></script>
+	<script>
+		kakkuGetDSEAll().then(res=>{
+			console.log(res)
+		})
+		kakkuGetCSE().then(res=>{
+			console.log(res)
+		})
+	</script>
+</body>
+</html>
