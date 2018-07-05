@@ -23,8 +23,8 @@ async function kakkuGetDSE(){
 		let arr = s.split(/[\s]{1,}/);
 		let obj = {
 			name			: arr[0],
-			lastTrade 		: arr[1],
-			changeAmount 	: arr[2],
+			lastTrade		: arr[1],
+			changeAmount	: arr[2],
 			changePercent	: arr[3]
 		}
 		data.push(obj);
@@ -75,9 +75,9 @@ async function kakkuGetCSE(){
 	for(let i = 0; i <= tr.length -1; i++) {
 		let td = tr[i].querySelectorAll('td');
 		let obj ={
-			name: td[0].innerText,
-			f: td[1].innerText,
-			l: td[2].innerText
+			name	: td[0].innerText,
+			f		: td[1].innerText,
+			l		: td[2].innerText
 		}
 		data.push(obj);
 	}
@@ -85,26 +85,74 @@ async function kakkuGetCSE(){
 	return data;
 }
 
-// 2. Make view Template for DSE
-
-// let obj = {
-// 	data 		: '',
-// 	class/ID 	: '',
-// 	template 	: '',
-// 	bg 			: '',
-// 	color 		: '',
-// 	speed 		: ''
-// }
-
+//view Template for DSE
 function TemplateDSE(obj=[]){
-	if(obj.length === 0){
-		console.log('Default Template')
-	}else{
-		console.log(obj)	
+	if(obj.length === 0) return;
+	if(obj.data == null || obj.data.length == 0) return ;
+	let viewDom = document.querySelector(obj.domEl)
+	if(viewDom === null){
+		let mess = 'Your Given ID/Class is Wrong';
+		throw new Error(mess);
 	}
+	let speed = (obj.scrolldelay) ? obj.scrolldelay : 5;
+	let bg = (obj.bg) ? obj.bg : '#49244e;';
+	let textColor = (obj.textColor) ? obj.textColor : '#333'; 
+	viewDom.innerHTML = `<div class="tem1" style="background: ${bg};color:${textColor}">
+		<div class="tem-header">
+			DSE
+		</div>
+		<marquee onMouseOver="this.stop()" onMouseOut="this.start()" loop="true" scrollamount="${speed}">
+			${obj.data.map(v=>{
+				let heigh = (v.changeAmount > 0) ? '<i class="upper">&#8679</i>' : '';
+				let low = (v.changeAmount < 0) ? '<i class="lower">&#8681</i>' : '';
+				let middle = (v.changeAmount == 0) ? '<i class="middle">&#8691</i>' : '';
+				return `<span>
+						${v.name} - ${v.lastTrade}
+						<br> 
+						<code>${v.changePercent}</code> 
+						<code>${v.changeAmount}</code>
+						${heigh} ${low} ${middle}
+					</span>`
+			}).join('')}
+		</marquee>
+ 	</div>`;
+}
+
+
+//view Template for CSE
+function TemplateCSE(obj=[]){
+	if(obj.length === 0) return;
+	if(obj.data == null || obj.data.length == 0) return ;
+	let viewDom = document.querySelector(obj.domEl)
+	if(viewDom === null){
+		let mess = 'Your Given ID/Class is Wrong';
+		throw new Error(mess);
+	}
+	let speed = (obj.scrolldelay) ? obj.scrolldelay : 5;
+	let bg = (obj.bg) ? obj.bg : '#49244e;';
+	let textColor = (obj.textColor) ? obj.textColor : '#333'; 
+	viewDom.innerHTML = `<div class="tem1" style="background: ${bg};color:${textColor}">
+		<div class="tem-header">
+			CSE
+		</div>
+		<marquee onMouseOver="this.stop()" onMouseOut="this.start()" loop="true" scrollamount="${speed}">
+			${obj.data.map(v=>{
+				let heigh = (parseInt(v.l) > 0) ? '<i class="upper">&#8679</i>' : '';
+				let low = (parseInt(v.l) < 0) ? '<i class="lower">&#8681</i>' : '';
+				let middle = (parseInt(v.l) == 0) ? '<i class="middle">&#8691</i>' : '';
+				return `<span>
+						${v.name}
+						<br> 
+						<code>${v.f}</code> 
+						<code>${v.l}</code>
+						${heigh} ${low} ${middle}
+					</span>`
+			}).join('')}
+		</marquee>
+ 	</div>`;
 }
 
 
 // Task 
-// 3. Make view Template for CSE
-// 4. Make Function for any url data scraping
+// 1. Make Function for any url data scraping
+// 2. get all cse table data

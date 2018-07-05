@@ -15,37 +15,38 @@ body,html{
 }
 .dsetem1 span{
 	display: inline-block;
-    background: #6d5171;
-    padding: 2px 20px 2px 10px;
+    background: #c7c7c7ab;
+    padding: 0px 15px 0px 5px;
     position: relative;
     text-align: center;
     font-size: 14px;
-    line-height: 25px;
+    line-height: 15px;
     border-radius: 3px;
-    margin: 5px;
+    margin: 7px 5px;
     color: #fff;
+    margin-bottom: 4px;
 }
 .dsetem1 i{
 	position: absolute;
-    right: 1px;
-    top: 15px;
+    right: 0px;
+    top: 8px;
     font-size: 25px;
     font-style: normal;
 }
 .dsetem1 i.upper{
-    color: #3eb93e;
+    color: #adeaad;
 }
 .dsetem1 i.lower{
-    color: #f00;
+    color: #f59e97;
 }
 .dsetem1 i.middle{
     color: #fff;
 }
 code{
-	background: #f3f3f3;
-    border-radius: 3px;
+	border-radius: 3px;
     padding: 1px 8px;
-    color: #E91E63;
+    color: #cfe098;
+    font-size: 12px;
 }
 .dsetem-header{
 	position: absolute;
@@ -53,7 +54,7 @@ code{
     height: 100%;
     width: 10%;
     z-index: 11;
-    background: #885f95;
+    background: #3a8c3e;
     text-align: center;
     align-items: stretch;
     align-content: center;
@@ -65,7 +66,7 @@ code{
 .dsetem-header:after{
 	content: '';
     position: absolute;
-    background: #947f96;
+    background: #b9d2b9;
     width: 5%;
     height: 100%;
     right: 0px;
