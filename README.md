@@ -14,16 +14,12 @@ This package can be installed with:
 
 ### Load
 
-**NOTE:** If you want to use the default navigation styles, you will also need to include `owl.theme.default.css`.
-
-
 Put the required stylesheet at the [top](https://developer.yahoo.com/performance/rules.html#css_top) of your markup:
 
 ```html
 <link rel="stylesheet" href="/dist/kakkuStyle.css" />
 ```
 Or
-
 ```html
 <link rel="stylesheet" href="/dist/kakkuStyle.min.css" />
 ```
@@ -35,15 +31,80 @@ Put the script at the [bottom](https://developer.yahoo.com/performance/rules.htm
 <script src="/dist/kakku.js"></script>
 ```
 Or
-
 ```html
 <script src="/dist/kakku.min.js"></script>
 ```
 
+### Usage
+
+It's a promiss base function so you can call the function and then response you data.
+
+```js
+
+//DSE market update
+kakkuGetDSE().then(res=>{
+  console.log(res);
+})
+
+//CSE market Update
+kakkuGetCSE().then(res=>{
+  console.log(res)
+})
+
+```
+
+
+If you want totall stock update table used this function:
+
+```js
+//DSE totall table
+kakkuGetDSEAll().then(res=>{
+  console.log(res)
+})
+
+//CSE totall table
+kakkuGetCSEAll().then(res=>{
+  console.log(res)
+})
+```
+
+you can you default style template
+```html
+<div class="dse"></div>
+<div class="cse"></div>
+```
+```js
+kakkuGetDSE().then(res=>{
+  TemplateDSE({
+    data    : res,
+    domEl   : '.dse',
+  })
+})
+kakkuGetCSE().then(res=>{
+  TemplateCSE({
+    data        : res,
+    domEl       : '.cse',
+    bg          : '#115852',
+    scrolldelay : 8
+  })
+})
+```
+
+**NOTE:** You can change [CROSS ORIGIN URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) and make request from your server. Make a php file foo.php then copy this code and past your foo.php file then change CROSSURL = 'foo.php';
+
+```php
+<?php 
+  if(!empty($_GET['url'])){
+    $url = $_GET['url'];    
+    print file_get_contents($url);
+  }else{
+   echo 'Something wrong with url';
+  }
+```
 
 ## Contributing
 
-[khyrulAlam](https://github.com/khyrulAlam).
+- [khyrulAlam](https://github.com/khyrulAlam).
 
 
 ## License
