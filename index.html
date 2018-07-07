@@ -2,21 +2,141 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Dhaka Stock Exchange And Chittagong Stock Exchange </title>
-	<link rel="stylesheet" href="assets/kakkuStyle.css">
+	<title>Dhaka Stock Exchange & Chittagong Stock Exchange </title>
+	<link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="assets/kakkuStyle.min.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+
 </head>
 <body>
-	<div class="view"></div>
-	<div class="view2"></div>
+	<span class="main-bg-text">DSE</span>
+	<span class="main-bg-text2">CSE</span>
+	<header>
+		<a href="https://github.com/khyrulAlam/DSE-CSE-Market-Update"><img src="assets/github-logo.svg" alt="github"></a>
+		<h3>
+			Dhaka Stock Exchange Update
+			<br> & <br>
+			Chittogong Stock Exchange Update
+		</h3>
+	</header>
+
+
+	<div class="dse">
+		<div class="loading">Loading...</div>
+	</div>
+	<br>
+	<div class="cse">
+		<div class="loading">Loading...</div>
+	</div>
 	
 
-	<script src="kakku.js"></script>
+	<div class="dse-table">
+		<h3>Dhaka Share Price Table</h3>
+		<table id="example" class="display" style="width:100%">
+		    <thead>
+		        <tr>
+		        	<th>ID</th>
+		            <th>Company</th>
+		            <th>LTP</th>
+		            <th>HIGH</th>
+		            <th>LOW</th>
+		            <th>YCP</th>
+		            <th>Close Price</th>
+		            <th>Trade</th>
+		            <th>Change</th>
+		            <th>Volume</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    </tbody>
+		</table>
+	</div>
+
+	<div class="cse-table">
+		<h3>Chittogong Share Price Table</h3>
+		<table id="example2" class="display" style="width: 100%">
+			<thead>
+	            <tr>
+	            	<th>ID</th>
+	                <th>Company</th>
+	                <th>LTP</th>
+	                <th>HIGH</th>
+	                <th>LOW</th>
+	                <th>YCP</th>
+	                <th>Close Price</th>
+	                <th>Trade</th>
+	                <th>Change</th>
+	                <th>Volume</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	        </tbody>
+		</table>
+	</div>
+
+
+	<footer>
+		<p>The is open-sourced software licensed under the <a href="http://opensource.org/licenses/MIT"><img src="https://opensource.org/files/osi_keyhole_300X300_90ppi_0.png" alt="MIT-Open-Source" width="15"> MIT License</a></p>
+	</footer>
+
+	<script src="kakku.min.js"></script>
 	<script>
-		kakkuGetDSEAll().then(res=>{
-			console.log(res)
+		
+		kakkuGetDSE().then(res=>{
+			TemplateDSE({
+				data		: res,
+				domEl		: '.dse',
+			})
 		})
 		kakkuGetCSE().then(res=>{
-			console.log(res)
+			TemplateCSE({
+				data		: res,
+				domEl		: '.cse',
+				bg			: '#115852'
+			})
+		})
+
+		//using jQuery datatable 
+		$(document).ready( function () {
+			var table = $('#example').DataTable();
+			kakkuGetDSEAll().then(res=>{
+				res.map((r,i)=>{
+					table.row.add([
+		                r.no,
+		                r.tradingCode,
+		                r.ltp,
+		                r.low,
+		                r.high,
+		                r.ycp,
+		                r.closep,
+		                r.trade,
+		                r.change,
+		                r.value,
+		                r.volume
+			        ]).draw( false );
+				})
+			})
+
+			var table2 = $('#example2').DataTable();
+			kakkuGetCSEAll().then(res=>{
+				res.map((r,i)=>{
+					table2.row.add([
+		                r.no,
+		                r.tradingCode,
+		                r.ltp,
+		                r.low,
+		                r.high,
+		                r.ycp,
+		                r.closePrice,
+		                r.trade,
+		                r.change,
+		                r.volume
+		            ]).draw( false );
+				})
+			})
 		})
 	</script>
 </body>
