@@ -37,7 +37,7 @@ Or
 
 ### Usage
 
-It's a promiss base function so you can call the function and then response you data.
+It's a promiss base `function` so you can call the `function` then wait for `response` you data.
 
 ```js
 
@@ -54,7 +54,7 @@ kakkuGetCSE().then(res=>{
 ```
 
 
-If you want totall stock update table used this function:
+If you want totall stock update table used this `function`
 
 ```js
 //DSE totall table
@@ -90,7 +90,8 @@ kakkuGetCSE().then(res=>{
 })
 ```
 
-**NOTE:** You can change [CROSS ORIGIN URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) and make request from your server. Make a php file foo.php then copy this code and past your foo.php file then change CROSSURL = 'foo.php';
+**NOTE:** You can change [CROSS ORIGIN URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) and make request from your `server`. Make a php file `foo.php` and copy this below code then past your `foo.php` file, now change `const CROSSURL = 'https://peaceful-mountain-17529.herokuapp.com/'
+` to `CROSSURL = 'foo.php';`
 
 ```php
 <?php 
