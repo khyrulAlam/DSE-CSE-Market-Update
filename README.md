@@ -1,6 +1,7 @@
 # Dhaka Stock Exchange & Chittogong Stock Exchange Market Update
 
 Share Market data scraping from [Dhaka stock exchange](https://www.dsebd.org/) and [Chittogong stock exchange](http://www.cse.com.bd/) website.
+
 **check out demo: https://khyrulalam.github.io/DSE-CSE-Market-Update/.**
 
 
@@ -54,21 +55,21 @@ kakkuGetCSE().then(res=>{
 ```
 
 
-If you want totall stock update table used this `function`
+If you want the total stock update table use this `function`
 
 ```js
-//DSE totall table
+//DSE total table
 kakkuGetDSEAll().then(res=>{
   console.log(res)
 })
 
-//CSE totall table
+//CSE total table
 kakkuGetCSEAll().then(res=>{
   console.log(res)
 })
 ```
 
-you can you default style template
+you can use default style template
 ```html
 <div class="dse"></div>
 <div class="cse"></div>
@@ -90,8 +91,7 @@ kakkuGetCSE().then(res=>{
 })
 ```
 
-**NOTE:** You can change [CROSS ORIGIN URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) and make request from your `server`. Make a php file `foo.php` and copy this below code then past your `foo.php` file, now change `const CROSSURL = 'https://peaceful-mountain-17529.herokuapp.com/'
-` to `CROSSURL = 'foo.php';`
+**NOTE:** You can change [CROSS ORIGIN URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) and make request from your `server`. Make a php file `foo.php` and copy the code below in your `foo.php` file. Now change in `kakku.js` and `kakku.min.js` from `const CROSSURL = 'https://peaceful-mountain-17529.herokuapp.com/' ` to `const CROSSURL = 'foo.php';`
 
 ```php
 <?php 
