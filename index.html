@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Dhaka Stock Exchange & Chittagong Stock Exchange </title>
@@ -11,11 +12,13 @@
 
 
 </head>
+
 <body>
 	<span class="main-bg-text">DSE</span>
 	<span class="main-bg-text2">CSE</span>
 	<header>
-		<a href="https://github.com/khyrulAlam/DSE-CSE-Market-Update"><img src="assets/github-logo.svg" alt="github"></a>
+		<a href="https://github.com/khyrulAlam/DSE-CSE-Market-Update"><img src="assets/github-logo.svg"
+				alt="github"></a>
 		<h3>
 			Dhaka Stock Exchange Update
 			<br> & <br>
@@ -31,27 +34,27 @@
 	<div class="cse">
 		<div class="loading">Loading...</div>
 	</div>
-	
+
 
 	<div class="dse-table">
 		<h3>Dhaka Share Price Table</h3>
 		<table id="example" class="display" style="width:100%">
-		    <thead>
-		        <tr>
-		        	<th>ID</th>
-		            <th>Company</th>
-		            <th>LTP</th>
-		            <th>HIGH</th>
-		            <th>LOW</th>
-		            <th>YCP</th>
-		            <th>Close Price</th>
-		            <th>Trade</th>
-		            <th>Change</th>
-		            <th>Volume</th>
-		        </tr>
-		    </thead>
-		    <tbody>
-		    </tbody>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Company</th>
+					<th>LTP</th>
+					<th>HIGH</th>
+					<th>LOW</th>
+					<th>YCP</th>
+					<th>Close Price</th>
+					<th>Trade</th>
+					<th>Change</th>
+					<th>Volume</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
 		</table>
 	</div>
 
@@ -59,85 +62,88 @@
 		<h3>Chittogong Share Price Table</h3>
 		<table id="example2" class="display" style="width: 100%">
 			<thead>
-	            <tr>
-	            	<th>ID</th>
-	                <th>Company</th>
-	                <th>LTP</th>
-	                <th>HIGH</th>
-	                <th>LOW</th>
-	                <th>YCP</th>
-	                <th>Close Price</th>
-	                <th>Trade</th>
-	                <th>Change</th>
-	                <th>Volume</th>
-	            </tr>
-	        </thead>
-	        <tbody>
-	        </tbody>
+				<tr>
+					<th>ID</th>
+					<th>Company</th>
+					<th>LTP</th>
+					<th>Open</th>
+					<th>HIGH</th>
+					<th>LOW</th>
+					<th>YCP</th>
+					<th>Trade</th>
+					<th>Value</th>
+					<th>Volume</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
 		</table>
 	</div>
 
 
 	<footer>
-		<p>The is open-sourced software licensed under the <a href="http://opensource.org/licenses/MIT"><img src="https://opensource.org/files/osi_keyhole_300X300_90ppi_0.png" alt="MIT-Open-Source" width="15"> MIT License</a></p>
+		<p>The is open-sourced software licensed under the <a href="http://opensource.org/licenses/MIT"><img
+					src="https://opensource.org/files/osi_keyhole_300X300_90ppi_0.png" alt="MIT-Open-Source" width="15">
+				MIT License</a></p>
 	</footer>
 
 	<script src="kakku.min.js"></script>
 	<script>
-		
-		kakkuGetDSE().then(res=>{
+
+		kakkuGetDSE().then(res => {
 			TemplateDSE({
-				data		: res,
-				domEl		: '.dse',
+				data: res,
+				domEl: '.dse',
 			})
 		})
-		kakkuGetCSE().then(res=>{
+		kakkuGetCSE().then(res => {
 			TemplateCSE({
-				data		: res,
-				domEl		: '.cse',
-				bg			: '#115852'
+				data: res,
+				domEl: '.cse',
+				bg: '#115852'
 			})
 		})
 
 		//using jQuery datatable 
-		$(document).ready( function () {
+		$(document).ready(function () {
 			var table = $('#example').DataTable();
-			kakkuGetDSEAll().then(res=>{
-				res.map((r,i)=>{
+			kakkuGetDSEAll().then(res => {
+				res.map((r, i) => {
 					table.row.add([
-		                r.no,
-		                r.tradingCode,
-		                r.ltp,
-		                r.low,
-		                r.high,
-		                r.ycp,
-		                r.closep,
-		                r.trade,
-		                r.change,
-		                r.value,
-		                r.volume
-			        ]).draw( false );
+						r.no,
+						r.tradingCode,
+						r.ltp,
+						r.low,
+						r.high,
+						r.ycp,
+						r.closep,
+						r.trade,
+						r.change,
+						r.value,
+						r.volume
+					]).draw(false);
 				})
 			})
 
 			var table2 = $('#example2').DataTable();
-			kakkuGetCSEAll().then(res=>{
-				res.map((r,i)=>{
+			kakkuGetCSEAll().then(res => {
+				res.map((r, i) => {
 					table2.row.add([
-		                r.no,
-		                r.tradingCode,
-		                r.ltp,
-		                r.low,
-		                r.high,
-		                r.ycp,
-		                r.closePrice,
-		                r.trade,
-		                r.change,
-		                r.volume
-		            ]).draw( false );
+						r.no,
+						r.tradingCode,
+						r.ltp,
+						r.open,
+						r.high,
+						r.low,
+						r.ycp,
+						r.trade,
+						r.value,
+						r.volume
+					]).draw(false);
 				})
 			})
 		})
 	</script>
 </body>
+
 </html>
