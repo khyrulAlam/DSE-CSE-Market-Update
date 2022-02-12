@@ -92,8 +92,8 @@ async function kakkuGetCSE() {
 //Dhaka Stock Exchage Total Data Table
 async function kakkuGetDSEAll() {
   let tr = await fetchDataFromUrl(
-    "https://www.dsebd.org/latest_share_price_all.php",
-    "table tr"
+    "https://www.dsebd.org/latest_share_price_scroll_by_ltp.php",
+    ".table.table-bordered.background-white.shares-table.fixedHeader tr"
   );
   let data = [];
   if (tr.length > 0) {
@@ -101,10 +101,10 @@ async function kakkuGetDSEAll() {
       let td = tr[i].querySelectorAll("td");
       let obj = {
         no: td[0].innerText,
-        tradingCode: td[1].innerText,
+        tradingCode: td[1].innerText.replace(/\t/g, '').replace(/\n/g, ''),
         ltp: td[2].innerText,
-        high: td[3].innerText,
-        low: td[4].innerText,
+        low: td[3].innerText,
+        high: td[4].innerText,
         closep: td[5].innerText,
         ycp: td[6].innerText,
         change: td[7].innerText,
