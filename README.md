@@ -105,7 +105,7 @@ kakkuGetCSE().then(res=>{
 
 ## Contributing
 
-- [khyrulAlam](https://github.com/khyrulAlam).
+- [khayrulAlam](https://github.com/khyrulAlam).
 
 
 ## License
